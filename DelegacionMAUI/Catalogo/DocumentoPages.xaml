@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DelegacionMAUI.Catalogo.DocumentoPages">
+
+    <VerticalStackLayout Padding="15" Spacing="15">
+        <Label Text="Lista de documentos"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="#1e3a8a"/>
+
+        <!-- Buscador -->
+        <SearchBar x:Name="SearchBar" 
+                   Placeholder="Buscar documentos..."
+                   TextChanged="OnSearchTextChanged"/>
+
+        <!-- Opciones de ordenamiento -->
+        <Picker x:Name="OrderPicker"
+                Title="Ordenar por"
+                SelectedIndexChanged="OnOrderChanged">
+            <Picker.Items>
+                <x:String>Costo (Mayor precio)</x:String>
+                <x:String>Costo (Menor precio)</x:String>
+                <x:String>Nombre (A-Z)</x:String>
+                <x:String>Nombre (Z-A)</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <CollectionView x:Name="documentosCollectionView"
+                        SelectionMode="Single"
+                        SelectionChanged="OnDocumentoSeleccionado">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Nombre}" 
+                                   FontAttributes="Bold" 
+                                   FontSize="18" 
+                                   TextColor="#1e3a8a"/>
+                            <Label Text="{Binding Costo, StringFormat='Costo: {0:C}'}"
+                                   FontSize="14"
+                                   TextColor="Gray"/>
+                            <Button Text="Solicitar Documento"
+                                    Clicked="OnSolicitarDocumentoClicked"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="#1e3a8a"
+                                    TextColor="White"
+                                    CornerRadius="8"
+                                    HorizontalOptions="End"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+
+</ContentPage>

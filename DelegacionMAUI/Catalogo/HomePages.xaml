@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DelegacionMAUI.Catalogo.HomePages">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CardStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="#e2e8f0" />
+            </Style>
+            <Style x:Key="CardTitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#1e3a8a" />
+                <Setter Property="Margin" Value="0,0,0,5" />
+            </Style>
+            <Style x:Key="CardDescriptionStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#64748b" />
+                <Setter Property="Margin" Value="0,0,0,15" />
+            </Style>
+            <Style x:Key="ActionButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#1e3a8a" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Padding" Value="15,10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Padding="20,30,20,10" BackgroundColor="#1e3a8a">
+            <Label Text="Delegación Municipal" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   TextColor="White" 
+                   HorizontalOptions="Center" />
+            <Label Text="Panel de Control" 
+                   FontSize="18" 
+                   TextColor="#cbd5e1" 
+                   HorizontalOptions="Center"
+                   Margin="0,5,0,10" />
+        </VerticalStackLayout>
+
+        <!-- Content -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20" Spacing="20">
+                <Label Text="Selecciona una opción para continuar"
+                       FontSize="16"
+                       TextColor="#64748b"
+                       HorizontalOptions="Center"
+                       Margin="0,10,0,15" />
+
+                <Grid ColumnSpacing="15" RowSpacing="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Aviso -->
+                    <Frame Grid.Row="0" Grid.Column="0" Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Image Grid.Column="0" Source="notification_icon.png" WidthRequest="32" HeightRequest="32" VerticalOptions="Start" />
+                                <VerticalStackLayout Grid.Column="1" Margin="15,0,0,0">
+                                    <Label Text="Avisos" Style="{StaticResource CardTitleStyle}"/>
+                                    <Label Text="Consulta los avisos y notificaciones importantes" Style="{StaticResource CardDescriptionStyle}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Button Text="Ver avisos" Style="{StaticResource ActionButtonStyle}" Clicked="OnAvisoClicked"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Documento Solicitado -->
+                    <Frame Grid.Row="0" Grid.Column="1" Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Image Grid.Column="0" Source="document_request_icon.png" WidthRequest="32" HeightRequest="32" VerticalOptions="Start" />
+                                <VerticalStackLayout Grid.Column="1" Margin="15,0,0,0">
+                                    <Label Text="Solicitudes" Style="{StaticResource CardTitleStyle}"/>
+                                    <Label Text="Revisa el estado de tus documentos solicitados" Style="{StaticResource CardDescriptionStyle}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Button Text="Ver solicitudes" Style="{StaticResource ActionButtonStyle}" Clicked="OnDocumentoSolicitadoClicked"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Documento -->
+                    <Frame Grid.Row="1" Grid.Column="0" Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Image Grid.Column="0" Source="documents_icon.png" WidthRequest="32" HeightRequest="32" VerticalOptions="Start" />
+                                <VerticalStackLayout Grid.Column="1" Margin="15,0,0,0">
+                                    <Label Text="Documentos" Style="{StaticResource CardTitleStyle}"/>
+                                    <Label Text="Catálogo de documentos disponibles" Style="{StaticResource CardDescriptionStyle}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Button Text="Ver documentos" Style="{StaticResource ActionButtonStyle}" Clicked="OnDocumentoClicked"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Cooperaciones de ciudadano -->
+                    <Frame Grid.Row="1" Grid.Column="1" Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Image Grid.Column="0" Source="cooperation_icon.png" WidthRequest="32" HeightRequest="32" VerticalOptions="Start" />
+                                <VerticalStackLayout Grid.Column="1" Margin="15,0,0,0">
+                                    <Label Text="Cooperaciones" Style="{StaticResource CardTitleStyle}"/>
+                                    <Label Text="Historial de cooperaciones ciudadanas" Style="{StaticResource CardDescriptionStyle}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Button Text="Ver cooperaciones" Style="{StaticResource ActionButtonStyle}" Clicked="OnCooperacionesDeCiudadanoClicked"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Cooperacion -->
+                    <Frame Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Image Grid.Column="0" Source="general_cooperation_icon.png" WidthRequest="32" HeightRequest="32" VerticalOptions="Start" />
+                                <VerticalStackLayout Grid.Column="1" Margin="15,0,0,0">
+                                    <Label Text="Cooperación General" Style="{StaticResource CardTitleStyle}"/>
+                                    <Label Text="Información sobre cooperaciones y contribuciones municipales" Style="{StaticResource CardDescriptionStyle}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Button Text="Ver cooperación" Style="{StaticResource ActionButtonStyle}" Clicked="OnCooperacionClicked"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Footer -->
+                <VerticalStackLayout Margin="0,20,0,0" Spacing="10">
+                    <BoxView HeightRequest="1" BackgroundColor="#e2e8f0" HorizontalOptions="Fill" />
+                    <Label Text="Delegación Municipal © 2025" 
+                           FontSize="14" 
+                           TextColor="#64748b" 
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

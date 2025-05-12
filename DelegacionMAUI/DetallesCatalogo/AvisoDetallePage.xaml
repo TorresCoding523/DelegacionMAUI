@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DelegacionMAUI.DetallesCatalogo.AvisoDetallePage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="15" Spacing="15">
+
+            <Label x:Name="TituloLabel" FontSize="24" FontAttributes="Bold" TextColor="#1e3a8a"/>
+            <Label x:Name="FechaLabel" FontSize="14" TextColor="Gray"/>
+            <Label x:Name="TextoLabel" FontSize="16"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
