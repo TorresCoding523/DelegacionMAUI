@@ -5,22 +5,70 @@
              Title="CooperacionesDeCiudadanoDetallePages">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="24" Spacing="24" BackgroundColor="#f3f4f6">
 
-            <Label x:Name="idCiudadanoLabel"
-                   FontSize="18"
-                   FontAttributes="Bold"/>
-            <Label x:Name="idCooperacionLabel"
-                   FontSize="16"/>
+            <Frame CornerRadius="12"
+                   BackgroundColor="White"
+                   Padding="20"
+                   HasShadow="True"
+                   BorderColor="#e5e7eb">
 
-            <Label x:Name="fechaPagoLabel"
-                   FontSize="16"/>
+                <VerticalStackLayout Spacing="16">
 
-            <Label x:Name="esParcialLabel"
-                   FontSize="16"/>
+                    <!-- Título / Nombre -->
+                    <Label x:Name="idCiudadanoLabel"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#1f2937"
+                           LineBreakMode="WordWrap" />
 
-            <Label x:Name="notasLabel"
-                   FontSize="16"/>
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <!-- Cooperación -->
+                    <Label Text="Tipo de Cooperación:"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="idCooperacionLabel"
+                           FontSize="16"
+                           TextColor="#374151" />
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <!-- Fecha de Pago -->
+                    <Label Text="Fecha de Pago:"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="fechaPagoLabel"
+                           FontSize="16"
+                           TextColor="#374151" />
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <!-- Pago Parcial -->
+                    <Label Text="¿Es pago parcial?"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="esParcialLabel"
+                           FontSize="16"
+                           TextColor="#374151" />
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <!-- Notas -->
+                    <Label Text="Notas:"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="notasLabel"
+                           FontSize="16"
+                           TextColor="#374151"
+                           LineBreakMode="WordWrap" />
+
+                </VerticalStackLayout>
+            </Frame>
 
         </VerticalStackLayout>
     </ScrollView>

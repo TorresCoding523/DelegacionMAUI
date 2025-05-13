@@ -8,17 +8,25 @@
 
         <Label Text="Lista de Cooperaciones de Ciudadano"
                FontSize="24"
-               HorizontalOptions="Center"
-               Margin="0,10" />
+               FontAttributes="Bold"
+               TextColor="#1e3a8a"/>
 
         <CollectionView x:Name="cooperacionesCollectionView">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5">
+                    <Frame Padding="10" 
+                           CornerRadius="12" 
+                           BackgroundColor="White" 
+                           HasShadow="True" 
+                           Margin="0,5">
                         <VerticalStackLayout>
-                            <Label Text="{Binding IdCiudadano}" FontAttributes="Bold" FontSize="18"/>
-                            <Label Text="{Binding FechaDePago, StringFormat='Fecha de pago: {0:dd/MM/yyyy}'}"/>
-                            <Label Text="{Binding EsParcial, Converter={StaticResource BoolToParcialConverter}}"/>
+                            <Label Text="{Binding IdCiudadano}" 
+                                   FontSize="18" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#1e3a8a"/>
+                            <Label Text="{Binding FechaDePago, StringFormat='Fecha de pago: {0:dd/MM/yyyy}'}"
+                                   FontSize="14" 
+                                   TextColor="Gray"/>
                             <Button Text="Ver detalles"
                                     Clicked="OnVerDetallesClicked"
                                     CommandParameter="{Binding .}"

@@ -1,23 +1,52 @@
+using DelegacionMAUI.Acceso;
 using DelegacionMAUI.Modelo;
+using DelegacionMAUI.Servicio;
 
 namespace DelegacionMAUI.DetallesCatalogo;
 
 public partial class CooperacionesDeCiudadanoDetallePages : ContentPage
 {
-    private CooperacionesDeCiudadano _cooperacion;
+    private readonly CooperacionesDeCiudadano _cooperacionCiudadano;
+    private readonly CooperacionServicio _cooperacionServicio = new();
 
     public CooperacionesDeCiudadanoDetallePages(CooperacionesDeCiudadano cooperacion)
 	{
 		InitializeComponent();
-        _cooperacion = cooperacion;
-        MostrarDetalles();
+        _cooperacionCiudadano = cooperacion;
+        _ = MostrarDetallesAsync(); // Llamada asíncrona
     }
-    private void MostrarDetalles()
+    private async Task MostrarDetallesAsync()
     {
-        idCiudadanoLabel.Text = $"ID Ciudadano: {_cooperacion.IdCiudadano}";
-        idCooperacionLabel.Text = $"ID Cooperacion: {_cooperacion.IdCooperacion}";
-        fechaPagoLabel.Text = $"Fecha de Pago: {_cooperacion.FechaDePago:dd/MM/yyyy}";
-        esParcialLabel.Text = _cooperacion.EsParcial ? "Pago Parcial: Sí" : "Pago Parcial: No";
-        notasLabel.Text = $"Notas: {_cooperacion.Notas}";
+        //Mostrar nombre completo desde la sesión
+        if (Sesion.UsuarioActual != null)
+        {
+            idCiudadanoLabel.Text = $"Ciudadano: {Sesion.UsuarioActual.Nombre} {Sesion.UsuarioActual.Apellidos}";
+        }
+        else
+        {
+            idCiudadanoLabel.Text = "Ciudadano no identificado";
+        }
+
+        fechaPagoLabel.Text = $" {_cooperacionCiudadano.FechaDePago:dd/MM/yyyy}";
+        esParcialLabel.Text = _cooperacionCiudadano.EsParcial ? " Sí" : " No";
+        notasLabel.Text = $" {_cooperacionCiudadano.Notas}";
+
+        try
+        {
+            var cooperacion = await _cooperacionServicio.ObtenerCooperacionPorIdAsync(_cooperacionCiudadano.IdCooperacion);
+
+            if (cooperacion != null)
+            {
+                idCooperacionLabel.Text = $"{cooperacion.Nombre}\n{cooperacion.Descripcion}";
+            }
+            else
+            {
+                idCooperacionLabel.Text = "Información de cooperación no disponible";
+            }
+        }
+        catch (Exception ex)
+        {
+            idCooperacionLabel.Text = $"Error al obtener cooperación: {ex.Message}";
+        }
     }
 }
