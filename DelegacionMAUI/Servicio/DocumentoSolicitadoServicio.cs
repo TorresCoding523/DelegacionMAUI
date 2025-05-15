@@ -26,12 +26,5 @@ namespace DelegacionMAUI.Servicio
         {
             return await _httpClient.GetFromJsonAsync<List<DocumentoSolicitado>>("api/DocumentoSolicitado");
         }
-
-
-        public async Task<bool> SolicitarDocumentoAsync(DocumentoSolicitado documentoSolicitado)
-        {
-            var response = await _httpClient.PostAsJsonAsync("api/DocumentoSolicitado", documentoSolicitado);
-            return response.IsSuccessStatusCode;
-        }
     }
 }

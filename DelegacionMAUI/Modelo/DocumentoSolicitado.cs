@@ -10,6 +10,8 @@ namespace DelegacionMAUI.Modelo
     {
         public int IdDocumentoSolicitado { get; set; }
         public int IdDocumento { get; set; }
+        public string NombreDocumento { get; set; } // Propiedad auxiliar
+
         public string IdCiudadanoSolicitante { get; set; }
         public DateTime FechaSolicitud { get; set; }
         public DateTime? FechaEntrega { get; set; }

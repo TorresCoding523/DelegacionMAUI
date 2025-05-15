@@ -1,20 +1,20 @@
 using DelegacionMAUI.Acceso;
+using DelegacionMAUI.DetallesCatalogo;
 using DelegacionMAUI.Modelo;
 using DelegacionMAUI.Servicio;
+using System.Collections.ObjectModel;
 
 namespace DelegacionMAUI.Catalogo;
 
 public partial class DocumentoPages : ContentPage
 {
     private DocumentoServicio documentoServicio = new DocumentoServicio();
-    private List<Documento> _documentoOriginales = new();
+    private ObservableCollection<Documento> documentosCollection = new ObservableCollection<Documento>();
+    private List<Documento> documentosOriginales = new List<Documento>();
 
     public DocumentoPages()
 	{
 		InitializeComponent();
-        // Opcional: establecer valores por defecto
-        SearchBar.Text = "";
-        OrderPicker.SelectedIndex = 0; // Por defecto: Fecha (más reciente)
         CargarDocumentos();
     }
 
@@ -22,9 +22,9 @@ public partial class DocumentoPages : ContentPage
     {
         try
         {
-            var documentos = await documentoServicio.GetDocumentoAsync();
-            _documentoOriginales = documentos;
-            AplicarFiltrosYOrden();
+            documentosOriginales = await documentoServicio.GetDocumentoAsync();
+            documentosCollection = new ObservableCollection<Documento>(documentosOriginales);
+            documentosCollectionView.ItemsSource = documentosCollection;
         }
         catch (Exception ex)
         {
@@ -32,78 +32,62 @@ public partial class DocumentoPages : ContentPage
         }
     }
 
-    private void AplicarFiltrosYOrden()
-    {
-        IEnumerable<Documento> documentoFiltrados = _documentoOriginales;
-
-        string textoBusqueda = SearchBar.Text?.ToLower() ?? "";
-        if (!string.IsNullOrWhiteSpace(textoBusqueda))
-        {
-            documentoFiltrados = documentoFiltrados.Where(a =>
-                (a.Nombre?.ToLower().Contains(textoBusqueda) ?? false));
-        }
-
-        switch (OrderPicker.SelectedIndex)
-        {
-            case 0: documentoFiltrados = documentoFiltrados.OrderByDescending(a => a.Costo); break;
-            case 1: documentoFiltrados = documentoFiltrados.OrderBy(a => a.Costo); break;
-            case 2: documentoFiltrados = documentoFiltrados.OrderBy(a => a.Nombre); break;
-            case 3: documentoFiltrados = documentoFiltrados.OrderByDescending(a => a.Nombre); break;
-        }
-
-        documentosCollectionView.ItemsSource = documentoFiltrados.ToList();
-    }
-
-    private async void OnDocumentoSeleccionado(object sender, SelectionChangedEventArgs e)
-    {
-        var documentoSeleccionado = e.CurrentSelection.FirstOrDefault() as Documento;
-        if (documentoSeleccionado == null)
-            return;
-
-        string mensaje = $"Nombre: {documentoSeleccionado.Nombre}\n" +
-                         $"Costo: {documentoSeleccionado.Costo:C}\n" +
-                         $"Notas: {documentoSeleccionado.Notas}\n" +
-                         $"Plantilla URL: {documentoSeleccionado.URLPlantilla}";
-
-        await DisplayAlert("Detalles del Documento", mensaje, "Cerrar");
-        ((CollectionView)sender).SelectedItem = null;
-    }
-
     private void OnSearchTextChanged(object sender, TextChangedEventArgs e)
     {
-        AplicarFiltrosYOrden();
+        string searchText = SearchBar.Text?.ToLower() ?? "";
+
+        if (string.IsNullOrWhiteSpace(searchText))
+        {
+            documentosCollectionView.ItemsSource = new ObservableCollection<Documento>(documentosOriginales);
+        }
+        else
+        {
+            var filteredItems = documentosOriginales
+                .Where(doc => doc.Nombre.ToLower().Contains(searchText))
+                .ToList();
+
+            documentosCollectionView.ItemsSource = new ObservableCollection<Documento>(filteredItems);
+        }
     }
 
     private void OnOrderChanged(object sender, EventArgs e)
     {
-        AplicarFiltrosYOrden();
+        if (documentosOriginales == null || !documentosOriginales.Any()) return;
+
+        var items = documentosOriginales.ToList();
+
+        switch (OrderPicker.SelectedIndex)
+        {
+            case 0: // Costo (Mayor precio)
+                items = items.OrderByDescending(d => d.Costo).ToList();
+                break;
+            case 1: // Costo (Menor precio)
+                items = items.OrderBy(d => d.Costo).ToList();
+                break;
+            case 2: // Nombre (A-Z)
+                items = items.OrderBy(d => d.Nombre).ToList();
+                break;
+            case 3: // Nombre (Z-A)
+                items = items.OrderByDescending(d => d.Nombre).ToList();
+                break;
+        }
+        documentosCollectionView.ItemsSource = new ObservableCollection<Documento>(items);
     }
 
-    private async void OnSolicitarDocumentoClicked(object sender, EventArgs e)
+    private void OnDocumentoSeleccionado(object sender, SelectionChangedEventArgs e)
     {
-        var button = (Button)sender;
-        var documento = (Documento)button.CommandParameter;
-
-        var documentoSolicitado = new DocumentoSolicitado
+        if (e.CurrentSelection.FirstOrDefault() is Documento documento)
         {
-            IdDocumento = documento.IdDocumento,
-            IdCiudadanoSolicitante = Sesion.UsuarioActual.IdCiudadano, // Usuario logueado
-            FechaSolicitud = DateTime.Now,
-            FechaEntrega = null,
-            IdUsuarioGenerador = "admin", // Quien genera la solicitud (ajústalo si es necesario)
-            FechaPago = null,
-            MontoPagado = documento.Costo,
-            IdUsuarioQueEntrega = null,
-            Finalidad = "Trámite personal",
-            Notas = "Solicitado desde app móvil"
-        };
+            // Aquí puedes implementar alguna acción cuando se selecciona un documento
+            documentosCollectionView.SelectedItem = null;
+        }
+    }
 
-        var servicioSolicitado = new DocumentoSolicitadoServicio();
-        bool exito = await servicioSolicitado.SolicitarDocumentoAsync(documentoSolicitado);
-
-        if (exito)
-            await DisplayAlert("Éxito", "El documento fue solicitado correctamente.", "OK");
-        else
-            await DisplayAlert("Error", "Hubo un problema al solicitar el documento.", "OK");
+    private async void OnVerDetallesClicked(object sender, EventArgs e)
+    {
+        if (sender is Button button && button.CommandParameter is Documento documentoSeleccionado)
+        {
+            await Navigation.PushAsync(new DocumentoDetallePage(documentoSeleccionado));
+        }
     }
 }

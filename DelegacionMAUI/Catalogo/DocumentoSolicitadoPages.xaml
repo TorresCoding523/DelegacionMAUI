@@ -14,7 +14,7 @@
                 <DataTemplate>
                     <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5">
                         <VerticalStackLayout>
-                            <Label Text="{Binding IdDocumento}" 
+                            <Label Text="{Binding NombreDocumento}" 
                                    FontAttributes="Bold" 
                                    FontSize="18"
                                    TextColor="#1e3a8a"/>

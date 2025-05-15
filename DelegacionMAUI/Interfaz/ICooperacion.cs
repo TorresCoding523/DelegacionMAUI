@@ -9,6 +9,7 @@ namespace DelegacionMAUI.Interfaz
 {
     public interface ICooperacion
     {
-        public Task<List<Cooperacion>> GetCooperacionAsync();
+        Task<List<Cooperacion>> GetCooperacionAsync();
+        Task<Cooperacion> ObtenerCooperacionPorIdAsync(int id);
     }
 }

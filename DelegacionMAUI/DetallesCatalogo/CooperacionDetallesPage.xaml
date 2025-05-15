@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DelegacionMAUI.DetallesCatalogo.CooperacionDetallesPage"
+             Title="CooperacionDetallesPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="24" BackgroundColor="#f3f4f6">
+
+            <Frame CornerRadius="12"
+                   BackgroundColor="White"
+                   Padding="20"
+                   HasShadow="True"
+                   BorderColor="#e5e7eb">
+
+                <VerticalStackLayout Spacing="16">
+
+                    <!-- Título / Nombre -->
+                    <Label x:Name="IdCooperacionLabel"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#1f2937"
+                           LineBreakMode="WordWrap" />
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <!-- Notas -->
+                    <Label Text="Descripcion:"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="DescripcionLabel"
+                           FontSize="16"
+                           TextColor="#374151"
+                           LineBreakMode="WordWrap" />
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <!-- Costo -->
+                    <Label Text="Costo de la Cooperacion:"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="MontoLabel"
+                           FontSize="16"
+                           TextColor="#374151" />
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <!-- Fecha de Pago -->
+                    <Label Text="Fecha de Inicio del pago:"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="FechaDeInicioLabel"
+                           FontSize="16"
+                           TextColor="#374151" />
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+                    
+                    <!-- Fecha de Pago -->
+                    <Label Text="Fecha Limite del pago:"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="FechaLimiteDePagoLabel"
+                           FontSize="16"
+                           TextColor="#374151" />
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

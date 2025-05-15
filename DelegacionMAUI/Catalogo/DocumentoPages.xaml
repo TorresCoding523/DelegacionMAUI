@@ -40,8 +40,8 @@
                             <Label Text="{Binding Costo, StringFormat='Costo: {0:C}'}"
                                    FontSize="14"
                                    TextColor="Gray"/>
-                            <Button Text="Solicitar Documento"
-                                    Clicked="OnSolicitarDocumentoClicked"
+                            <Button Text="Ver Detalles"
+                                    Clicked="OnVerDetallesClicked"
                                     CommandParameter="{Binding .}"
                                     BackgroundColor="#1e3a8a"
                                     TextColor="White"
