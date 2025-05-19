@@ -1,3 +1,5 @@
+using DelegacionMAUI.DetallesCatalogo;
+using DelegacionMAUI.Modelo;
 using DelegacionMAUI.Servicio;
 
 namespace DelegacionMAUI.Catalogo;
@@ -36,6 +38,14 @@ public partial class DocumentoSolicitadoPages : ContentPage
         catch (Exception ex)
         {
             await DisplayAlert("Error", "No se pudieron cargar los documentos solicitados: " + ex.Message, "OK");
+        }
+    }
+
+    private async void OnVerDetallesClicked(object sender, EventArgs e)
+    {
+        if (sender is Button button && button.CommandParameter is DocumentoSolicitado documentoSolicitado)
+        {
+            await Navigation.PushAsync(new DocumentoSolicitadoDetallePages(documentoSolicitado));
         }
     }
 }

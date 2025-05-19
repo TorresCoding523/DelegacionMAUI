@@ -37,7 +37,7 @@
                     <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
 
                     <!-- Costo -->
-                    <Label Text="Costo de la Cooperacion:"
+                    <Label Text="Costo de la cooperacion:"
                            FontSize="14"
                            TextColor="#6b7280"
                            FontAttributes="Bold"/>
@@ -48,7 +48,7 @@
                     <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
 
                     <!-- Fecha de Pago -->
-                    <Label Text="Fecha de Inicio del pago:"
+                    <Label Text="Fecha de inicio del pago:"
                            FontSize="14"
                            TextColor="#6b7280"
                            FontAttributes="Bold"/>
@@ -59,7 +59,7 @@
                     <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
                     
                     <!-- Fecha de Pago -->
-                    <Label Text="Fecha Limite del pago:"
+                    <Label Text="Fecha limite del pago:"
                            FontSize="14"
                            TextColor="#6b7280"
                            FontAttributes="Bold"/>

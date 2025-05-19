@@ -96,6 +96,9 @@
 	  <MauiXaml Update="DetallesCatalogo\DocumentoDetallePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="DetallesCatalogo\DocumentoSolicitadoDetallePages.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

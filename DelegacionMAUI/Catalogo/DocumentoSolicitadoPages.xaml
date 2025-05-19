@@ -24,9 +24,13 @@
                             <Label Text="{Binding MontoPagado, StringFormat='Monto pagado: {0:C}'}"
                                    FontSize="14"
                                    TextColor="Gray"/>
-                            <Label Text="{Binding Finalidad}"
-                                   FontSize="14"
-                                   TextColor="Gray"/>
+                            <Button Text="Ver detalles"
+                                    Clicked="OnVerDetallesClicked"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="#1e3a8a"
+                                    TextColor="White"
+                                    CornerRadius="8"
+                                    HorizontalOptions="End"/>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>

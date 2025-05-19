@@ -25,6 +25,41 @@
         <Label x:Name="errorLabel" TextColor="Red" IsVisible="False"
                HorizontalOptions="Center" />
 
+        <Grid ColumnDefinitions="Auto,*" Margin="0,-10,0,0">
+            <CheckBox x:Name="checkboxRecordarme" 
+                      Color="#4c6ef5"
+                      Grid.Column="0" />
+            <Label Text="Recordarme" 
+                   Grid.Column="1"
+                   VerticalOptions="Center"
+                   TextColor="#666666" />
+        </Grid>
+
+        <StackLayout Orientation="Horizontal" Margin="0,-10,0,-10">
+            <BoxView HeightRequest="1" 
+                     BackgroundColor="#e0e0e0" 
+                     HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="Center" />
+            <Label Text=" O " 
+                   TextColor="#666666" 
+                   Margin="10,0" />
+            <BoxView HeightRequest="1" 
+                     BackgroundColor="#e0e0e0" 
+                     HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="Center" />
+        </StackLayout>
+
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+            <Label Text="AVISO IMPORTANTE" 
+                   TextColor="#666666" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAvisoTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+
     </VerticalStackLayout>
 
 </ContentPage>

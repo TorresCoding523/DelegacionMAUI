@@ -26,5 +26,10 @@ namespace DelegacionMAUI.Servicio
         {
             return await _httpClient.GetFromJsonAsync<List<Ciudadano>>("api/Ciudadano");
         }
+
+        public async Task<Ciudadano> ObtenerUsuariosIdAsync(string id)
+        {
+            return await _httpClient.GetFromJsonAsync<Ciudadano>($"api/Ciudadano/{id}");
+        }
     }
 }

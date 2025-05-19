@@ -45,6 +45,16 @@
                                TextColor="#374151"
                                LineBreakMode="WordWrap" />
 
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <Button Text="Solicitar documento"
+                            Clicked="OnSolicitarDocumentoClicked"
+                            CommandParameter="{Binding .}"
+                            BackgroundColor="#1e3a8a"
+                            TextColor="White"
+                            CornerRadius="8"
+                            HorizontalOptions="Center"/>
+
                 </VerticalStackLayout>
             </Frame>
 

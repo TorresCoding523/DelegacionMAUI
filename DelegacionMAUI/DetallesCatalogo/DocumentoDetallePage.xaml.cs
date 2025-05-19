@@ -11,4 +11,9 @@ public partial class DocumentoDetallePage : ContentPage
         CostoLabel.Text = documento.Costo.ToString("C");
         notasLabel.Text = documento.Notas;
     }
+
+    private void OnSolicitarDocumentoClicked(object sender, EventArgs e)
+    {
+
+    }
 }

@@ -25,7 +25,7 @@
                     <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
 
                     <!-- Cooperación -->
-                    <Label Text="Tipo de Cooperación:"
+                    <Label Text="Tipo de cooperación:"
                            FontSize="14"
                            TextColor="#6b7280"
                            FontAttributes="Bold"/>
@@ -36,7 +36,7 @@
                     <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
 
                     <!-- Fecha de Pago -->
-                    <Label Text="Fecha de Pago:"
+                    <Label Text="Fecha de pago:"
                            FontSize="14"
                            TextColor="#6b7280"
                            FontAttributes="Bold"/>

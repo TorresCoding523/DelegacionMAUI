@@ -13,6 +13,7 @@
 
     <ShellItem Route="HomePages">
         <ShellContent ContentTemplate="{DataTemplate catalogo:HomePages}" />
+        
     </ShellItem>
 
 </Shell>
