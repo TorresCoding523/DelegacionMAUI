@@ -1,13 +1,19 @@
 using DelegacionMAUI.Acceso;
 using DelegacionMAUI.Modelo;
+using DelegacionMAUI.Servicio;
 
 namespace DelegacionMAUI.DetallesCatalogo;
 
 public partial class DocumentoDetallePage : ContentPage
 {
-	public DocumentoDetallePage( Documento documento)
+    private string correoDelegacion; // Variable para guardar el correo dinámico
+    private Documento documentoActual; // Para almacenar el documento recibido
+
+    public DocumentoDetallePage( Documento documento)
 	{
 		InitializeComponent();
+
+        documentoActual = documento;
 
         // Asignar el documento al contexto de datos para que funcione el Binding en XAML
         BindingContext = documento;
@@ -17,14 +23,35 @@ public partial class DocumentoDetallePage : ContentPage
         notasLabel.Text = documento.Notas;
     }
 
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        try
+        {
+            var servicio = new InfoDelegacionServicio();
+            var info = await servicio.IInfoDelegacion();
+
+            if (info != null && info.Any())
+            {
+                // Acceder al modelo correcto que sí tiene "Correo"
+                correoDelegacion = info.First().Correo;
+            }
+            else
+            {
+                await DisplayAlert("Aviso", "No se encontró información de la delegación.", "Aceptar");
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", "No se pudo obtener la información de la delegación: " + ex.Message, "Aceptar");
+        }
+    }
+
     private async void OnSolicitarDocumentoClicked(object sender, EventArgs e)
     {
         try
         {
-            // Obtener el documento actual
-            var button = (Button)sender;
-            var documento = (Documento)button.CommandParameter;
-
             // Obtener el usuario actual de la sesión
             var usuario = Sesion.UsuarioActual;
 
@@ -34,21 +61,30 @@ public partial class DocumentoDetallePage : ContentPage
                 return;
             }
 
-            // Crear la URI de correo
-            string recipient = "05angelt@gmail.com"; // Destinatario fijo (quien recibe la solicitud)
-            string subject = Uri.EscapeDataString($"Solicitud de documento: {documento.Nombre}");
+            // Validar si se cargó correctamente el correo de la delegación
+            if (string.IsNullOrEmpty(correoDelegacion))
+            {
+                await DisplayAlert("Error", "No se pudo obtener el correo de la delegación.", "Aceptar");
+                return;
+            }
 
-            // Incluir datos del usuario que solicita
+            // Crear el asunto y cuerpo del correo
+            string subject = Uri.EscapeDataString($"Solicitud de documento: {documentoActual.Nombre}");
+
             string body = Uri.EscapeDataString(
-                $"Solicito el documento: {documento.Nombre}\n" +
-                $"Costo: {documento.Costo:C}\n\n" +
+                $"Solicito el documento: {documentoActual.Nombre}\n" +
+                $"Costo: {documentoActual.Costo:C}\n\n" +
                 $"Datos del solicitante:\n" +
                 $"Nombre: {usuario.Nombre} {usuario.Apellidos}\n" +
                 $"Correo: {usuario.Email}\n\n" +
                 $"Favor de proporcionarme información sobre cómo proceder con este trámite.\n\nGracias."
             );
 
-            string uri = $"mailto:{recipient}?subject={subject}&body={body}";
+            string uri = $"mailto:{correoDelegacion}?subject={subject}&body={body}";
+
+            // Confirmar con el usuario antes de enviar
+            bool confirmar = await DisplayAlert("Confirmar", $"¿Deseas enviar un correo a {correoDelegacion}?", "Sí", "No");
+            if (!confirmar) return;
 
             // Abrir el cliente de correo
             await Launcher.OpenAsync(uri);

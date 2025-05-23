@@ -5,6 +5,8 @@
 
     <VerticalStackLayout Padding="30,-90,30,40" Spacing="20" VerticalOptions="CenterAndExpand">
 
+        <Image Source="coordinacion.png" HeightRequest="120" HorizontalOptions="Center" Margin="0,0,0,-10" />
+
         <Label Text="Delegación - Acceso" FontSize="28" FontAttributes="Bold"
                HorizontalOptions="Center" TextColor="#1e3a8a"/>
 
