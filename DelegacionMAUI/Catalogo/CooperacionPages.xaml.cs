@@ -32,7 +32,8 @@ public partial class CooperacionPages : ContentPage
     {
         if (sender is Button button && button.CommandParameter is Cooperacion cooperacion)
         {
-            await Navigation.PushAsync(new CooperacionDetallesPage(cooperacion));
+            //await Navigation.PushAsync(new CooperacionDetallesPage(cooperacion));
+            await Navigation.PushModalAsync(new DetallesCatalogo.CooperacionDetallesPage(cooperacion));
         }
     }
 }

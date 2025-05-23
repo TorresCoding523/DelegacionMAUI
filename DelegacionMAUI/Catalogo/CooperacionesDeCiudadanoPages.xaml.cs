@@ -41,7 +41,8 @@ public partial class CooperacionesDeCiudadanoPages : ContentPage
     {
         if (sender is Button button && button.CommandParameter is CooperacionesDeCiudadano cooperacionesDeCiudadano)
         {
-            await Navigation.PushAsync(new CooperacionesDeCiudadanoDetallePages(cooperacionesDeCiudadano));
+            //await Navigation.PushAsync(new CooperacionesDeCiudadanoDetallePages(cooperacionesDeCiudadano));
+            await Navigation.PushModalAsync(new DetallesCatalogo.CooperacionesDeCiudadanoDetallePages(cooperacionesDeCiudadano));
         }
     }
 }

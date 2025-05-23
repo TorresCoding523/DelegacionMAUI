@@ -9,26 +9,31 @@ public partial class HomePages : ContentPage
 
     private async void OnAvisoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AvisoPages());
+        await Navigation.PushModalAsync(new Catalogo.AvisoPages());
     }
 
     private async void OnDocumentoSolicitadoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new DocumentoSolicitadoPages());
+        await Navigation.PushModalAsync(new Catalogo.DocumentoSolicitadoPages());
     }
 
     private async void OnDocumentoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new DocumentoPages());
+        await Navigation.PushModalAsync(new Catalogo.DocumentoPages());
     }
 
     private async void OnCooperacionesDeCiudadanoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new CooperacionesDeCiudadanoPages());
+        await Navigation.PushModalAsync(new Catalogo.CooperacionesDeCiudadanoPages());
     }
 
     private async void OnCooperacionClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new CooperacionPages());
+        await Navigation.PushModalAsync(new Catalogo.CooperacionPages());
+    }
+
+    private async void OnAtencionCiudadanaClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new Catalogo.AtencionAlClientePages());
     }
 }

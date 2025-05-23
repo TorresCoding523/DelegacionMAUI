@@ -62,6 +62,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -137,6 +138,21 @@
                             <Button Text="Ver cooperación" Style="{StaticResource ActionButtonStyle}" Clicked="OnCooperacionClicked"/>
                         </VerticalStackLayout>
                     </Frame>
+
+                    <!-- Atención Ciudadana -->
+                    <Frame Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Image Grid.Column="0" Source="atencionalcliente.png" WidthRequest="32" HeightRequest="40" VerticalOptions="Start" />
+                                <VerticalStackLayout Grid.Column="1" Margin="15,0,0,0">
+                                    <Label Text="Atención Ciudadana" Style="{StaticResource CardTitleStyle}"/>
+                                    <Label Text="Solicita orientación o atención personalizada." Style="{StaticResource CardDescriptionStyle}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Button Text="Solicitar atención" Style="{StaticResource ActionButtonStyle}" Clicked="OnAtencionCiudadanaClicked"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
                 </Grid>
 
                 <!-- Footer -->

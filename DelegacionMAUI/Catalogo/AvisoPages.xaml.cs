@@ -37,7 +37,8 @@ public partial class AvisoPages : ContentPage
     {
         if (sender is Button button && button.CommandParameter is Aviso aviso)
         {
-            await Navigation.PushAsync(new AvisoDetallePage(aviso));
+            //await Navigation.PushAsync(new AvisoDetallePage(aviso));
+            await Navigation.PushModalAsync(new DetallesCatalogo.AvisoDetallePage(aviso));
         }
     }
 

@@ -6,7 +6,7 @@
 
     <VerticalStackLayout Padding="10">
 
-        <Label Text="Lista de Cooperaciones de Ciudadano"
+        <Label Text="Cooperaciones de Ciudadano"
                FontSize="24"
                FontAttributes="Bold"
                TextColor="#1e3a8a"/>

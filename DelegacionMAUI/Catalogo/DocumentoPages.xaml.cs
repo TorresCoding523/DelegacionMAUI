@@ -87,7 +87,7 @@ public partial class DocumentoPages : ContentPage
     {
         if (sender is Button button && button.CommandParameter is Documento documentoSeleccionado)
         {
-            await Navigation.PushAsync(new DocumentoDetallePage(documentoSeleccionado));
+            await Navigation.PushModalAsync(new DetallesCatalogo.DocumentoDetallePage(documentoSeleccionado));
         }
     }
 }

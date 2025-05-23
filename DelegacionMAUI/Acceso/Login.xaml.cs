@@ -62,7 +62,8 @@ public partial class Login : ContentPage
                 }
 
                 await DisplayAlert("Bienvenido", $"Hola {usuario.Nombre} {usuario.Apellidos}", "OK");
-                await Navigation.PushAsync(new HomePages());
+                //await Navigation.PushAsync(new HomePages());
+                await Navigation.PushModalAsync(new Catalogo.HomePages());
             }
             else
             {

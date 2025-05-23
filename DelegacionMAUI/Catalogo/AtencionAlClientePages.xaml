@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DelegacionMAUI.Catalogo.AtencionAlClientePages">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Estilos para los elementos de la interfaz -->
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#1e3a8a" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,15,0,5" />
+            </Style>
+
+            <Style x:Key="SubtitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="20,0,20,20" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="24" BackgroundColor="#f3f4f6">
+
+            
+            <Frame CornerRadius="12"
+                   BackgroundColor="White"
+                   Padding="20"
+                   HasShadow="True"
+                   BorderColor="#e5e7eb">
+
+                <VerticalStackLayout Spacing="16">
+
+                    <Label Text="Centro de Atención al Ciudadano" 
+Style="{StaticResource TitleStyle}" />
+                    <Label Text="Información de las delegacion para atención ciudadana. Pulse el icono de copia para copiar cada elemento de información."
+Style="{StaticResource SubtitleStyle}" />
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <!-- Nombre -->
+                    <Label Text="Nombre de la delegación:"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold" />
+                    <Label x:Name="NombreLabel"
+                           FontSize="16"
+                           TextColor="Black"
+                           LineBreakMode="WordWrap" />
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <!-- Descripción -->
+                    <Label Text="Descripción:"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold" />
+                    <Label x:Name="DescripcionLabel"
+                           FontSize="16"
+                           TextColor="Black"
+                           LineBreakMode="WordWrap" />
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <!-- Dirección -->
+                    <Label Text="Dirección:"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold" />
+                    <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                        <Label x:Name="DireccionLabel"
+                               FontSize="16"
+                               TextColor="Black"
+                               LineBreakMode="WordWrap" />
+                        <ImageButton Source="copiar.png"
+                                     WidthRequest="20"
+                                     HeightRequest="20"
+                                     Margin="0,0,0,0"
+                                     BackgroundColor="Transparent"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="End"
+                                     Clicked="OnCopyTelefonoClicked" />
+                    </Grid>
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <!-- Teléfono -->
+                    <Label Text="Teléfono:"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold" />
+
+                    <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                        <Label x:Name="TelefonoLabel"
+                               FontSize="16"
+                               TextColor="Black"
+                               LineBreakMode="WordWrap" />
+                        <ImageButton Source="copiar.png"
+                                     WidthRequest="20"
+                                     HeightRequest="20"
+                                     Margin="0,0,0,0"
+                                     BackgroundColor="Transparent"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="End"
+                                     Clicked="OnCopyTelefonoClicked" />
+                    </Grid>
+
+                    <BoxView HeightRequest="1" BackgroundColor="#e5e7eb" />
+
+                    <!-- Correo -->
+                    <Label Text="Correo:"
+                           FontSize="14"
+                           TextColor="#6b7280"
+                           FontAttributes="Bold" />
+
+                    <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                        <Label x:Name="CorreoLabel"
+                               FontSize="16"
+                               TextColor="Black"
+                               LineBreakMode="WordWrap" />
+
+                        <ImageButton Source="copiar.png"
+                                     WidthRequest="20"
+                                     HeightRequest="20"
+                                     Margin="0,0,0,0"
+                                     BackgroundColor="Transparent"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="End"
+                                     Clicked="OnCopyTelefonoClicked" />
+                    </Grid>
+                   
+
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

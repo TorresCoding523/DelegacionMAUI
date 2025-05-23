@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:acceso="clr-namespace:DelegacionMAUI.Acceso"
     xmlns:catalogo="clr-namespace:DelegacionMAUI.Catalogo"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Flyout">
 
     <ShellItem Route="Login">
         <ShellContent ContentTemplate="{DataTemplate acceso:Login}" />

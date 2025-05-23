@@ -7,7 +7,7 @@ namespace DelegacionMAUI.Catalogo;
 public partial class DocumentoSolicitadoPages : ContentPage
 {
     private DocumentoSolicitadoServicio documentoSolicitadoServicio = new DocumentoSolicitadoServicio();
-    private DocumentoServicio documentoServicio = new DocumentoServicio(); // Añade esto
+    private DocumentoServicio documentoServicio = new DocumentoServicio();
 
     public DocumentoSolicitadoPages()
 	{
@@ -45,7 +45,8 @@ public partial class DocumentoSolicitadoPages : ContentPage
     {
         if (sender is Button button && button.CommandParameter is DocumentoSolicitado documentoSolicitado)
         {
-            await Navigation.PushAsync(new DocumentoSolicitadoDetallePages(documentoSolicitado));
+            //await Navigation.PushAsync(new DocumentoSolicitadoDetallePages(documentoSolicitado));
+            await Navigation.PushModalAsync(new DetallesCatalogo.DocumentoSolicitadoDetallePages(documentoSolicitado));
         }
     }
 }
